@@ -8,12 +8,16 @@ button,
 
 #header {
   float: left;
- 
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+
+  font-family: 'Patua One', cursive;
 
  
 }
 
+input{
+  float: left;
+}
 button{
   background-color: cadetblue;
   color: white;
@@ -29,4 +33,10 @@ button{
 *{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: darkslategray;
+}
+
+#textTop {
+  font-family: 'Patua One', cursive;
+  font-size: 3em;
+  padding: 0px;
 }
