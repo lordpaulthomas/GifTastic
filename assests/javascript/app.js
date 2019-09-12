@@ -4,13 +4,16 @@ const topicArray = ["Fish", "Boat", "Cruise"];
 
 function renderButtons() {
   $buttonDiv = $('<div>')
+  $p = $('<p>')
+  $p.text("Click the word to see some Gifs")
   for (let i = 0; i < topicArray.length; i++) {
     $button = $('<button>');
     $button.attr({
       'data-name': topicArray[i],
-      class: "topic",
+      class: "btn btn-secondary",
       value: topicArray[i]
     });
+    $button.prepend($p)
     $button.text(topicArray[i])
     $buttonDiv.append($button)
     $('#buttons-view').append($buttonDiv)
@@ -27,7 +30,7 @@ function searchGiphy(newTopic) {
 
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     newTopic + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10"
-
+$('#view-images').empty();
   $.ajax({
     url: queryURL,
     method: 'GET'
@@ -36,6 +39,7 @@ function searchGiphy(newTopic) {
     console.log(results)
     for (let i = 0; i < results.length; i++) {
       $gifDiv = $('<div>');
+      
       $img = $('<img>');
       $img.attr("src", results[i].images.fixed_height.url);
       $gifDiv.prepend($img);
@@ -45,6 +49,13 @@ function searchGiphy(newTopic) {
   })
 }
 
+
+
+$box = $('<p>')
+$box.text("Click on the buttons to see some Gifs.  Add a topic to the button list")
+$('#input-box').prepend($box);
+
+  
 
 // allow user to input text and click submit
 
@@ -89,12 +100,4 @@ $("#submit").on("click", function (event) {
   renderButtons();
   $('#input-box').val("")
 });
-
-// // Adding click event listeners to all elements with a class of "topic"
-// $(document).on("click", 'movie', function(){
- 
-// }, displayUserInput(queryURL));
-
-// // Calling the renderButtons function to display the intial buttons
-// renderButtons();
 

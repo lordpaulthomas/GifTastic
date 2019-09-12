@@ -2,5 +2,31 @@ button,
     div,
     form,
     input {
-      margin: 10px;
+      margin: 1em;
+      padding: 3px;
     }
+
+#header {
+  float: left;
+ 
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+ 
+}
+
+button{
+  background-color: cadetblue;
+  color: white;
+  padding: 2em;
+  border: solid 2px black;
+}
+
+.container {
+  background-color: mintcream;
+  border: solid 2px darkseagreen;
+}
+
+*{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: darkslategray;
+}
