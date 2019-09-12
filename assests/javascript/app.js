@@ -34,11 +34,14 @@ $.ajax( {
   method: 'GET'
 }).then(function(response){
   results = response.data;
+  console.log(results)
   for (let i = 0; i < results.length; i++){
     $gifDiv = $('<div>');
     $img = $('<img>');
-    $img.attr("src", results[i].fixed_height.url)
-    
+    $img.attr("src", results[i].images.fixed_height.url);
+    $gifDiv.prepend($img);
+    $('#view-images').prepend($gifDiv);
+
   }
 })
 
