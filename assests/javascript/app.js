@@ -1,7 +1,8 @@
 // create an array with topic examples
 const topicArray = ["Fish", "Boat", "Cruise"];
-// turn the array into buttons
 
+
+// turn the array into buttons
 function renderButtons() {
   $buttonDiv = $('<div>')
   $p = $('<p>')
@@ -27,7 +28,6 @@ $(document).on('click', '.topic', function () {
   searchGiphy(newTopic);
 })
 function searchGiphy(newTopic) {
-
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     newTopic + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10"
 $('#view-images').empty();
@@ -44,60 +44,31 @@ $('#view-images').empty();
       $img.attr("src", results[i].images.fixed_height.url);
       $gifDiv.prepend($img);
       $('#view-images').prepend($gifDiv);
-
     }
   })
 }
-
-
-
-$box = $('<p>')
-$box.text("Click on the buttons to see some Gifs.  Add a topic to the button list")
-$('#input-box').prepend($box);
-
-  
-
+ 
 // allow user to input text and click submit
 
-
-// user text gets added to the button area 
-
+$("#submit").on("click", function (event) {
+  event.preventDefault();
+  if($("#input-box").val()===("")){throw error}
+  else{
+  var newTopic = $("#input-box").val().trim();
+  // user text gets added to the button area 
+  topicArray.push(newTopic);
+  renderButtons();
+  $('#input-box').val("")}
+});
 
 // when user button is clicked it also display gifs of that topic
-
 function renderButtons() {
-
   $("#buttons-view").empty();
-
-  // Loops through the array of movies
   for (var i = 0; i < topicArray.length; i++) {
-
-    // Then dynamicaly generates buttons for each topic in the array
-    // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
     var $a = $("<button>");
-    // Adds a class of topic to our button
     $a.addClass("topic");
-    // Added a data-attribute
     $a.attr("data-name", topicArray[i]);
-    // Provided the initial button text
     $a.text(topicArray[i]);
-    // Added the button to the buttons-view div
     $("#buttons-view").append($a);
   }
 }
-
-// This function handles events where the add topic button is clicked
-$("#submit").on("click", function (event) {
-
-  event.preventDefault();
-  
-  // This line of code will grab the input from the textbox
-  var newTopic = $("#input-box").val().trim();
-
-  // The topic from the textbox is then added to our array
-  topicArray.push(newTopic);
-  // Calling renderButtons which handles the processing of our topic array
-  renderButtons();
-  $('#input-box').val("")
-});
-
