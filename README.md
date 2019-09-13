@@ -1,1 +1,1 @@
-# GifTastic
+# GifTastic  This website allows you to search for gifs by clicking buttons. The topic searched is determined by the word attached to each button. You are able to add buttons to click on by inputing a search word and clicking the submit button.  You can then click the button you created to see Gifs that return based on your search word/s.   
