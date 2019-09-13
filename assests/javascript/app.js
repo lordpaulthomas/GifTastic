@@ -5,6 +5,7 @@ const favArray = [];
 // turn the array into buttons
 function renderButtons() {
   $buttonDiv = $('<div>')
+  $favButtonDiv = $('<div>')
   $p = $('<p>')
   $p.text("Click the word to see some Gifs")
   for (let i = 0; i < topicArray.length; i++) {
@@ -17,6 +18,7 @@ function renderButtons() {
     $button.prepend($p)
     $button.text(topicArray[i])
     $buttonDiv.append($button)
+
     $('#buttons-view').append($buttonDiv)
   }
 }
@@ -27,6 +29,7 @@ $(document).on('click', '.topic', function () {
   const newTopic = $(this).attr('data-name')
   searchGiphy(newTopic);
 })
+$('#favorites').append(localStorage.getItem("favorite"))
 function searchGiphy(newTopic) {
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     newTopic + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=25"
@@ -39,10 +42,13 @@ $('#view-images').empty();
     console.log(results)
     for (let i = 0; i < results.length; i++) {
       $gifDiv = $('<div>');
+      $gifDiv.addClass("card")
       $p = $('<p>')
-      $p.text("Rated - "+results[i].rating)
+      $p.html(`${results[i].title} <br>Rated - ${results[i].rating}`)
+      $p.attr({class: "card-text text-center bg-light text-success"})
       $img = $('<img>');
-      $img.attr("src", results[i].images.fixed_height.url);
+      $img.attr({"src": results[i].images.fixed_height.url,
+                  class: "card-image-top"});
       $gifDiv.append($p)
       $gifDiv.prepend($img);
       $('#view-images').prepend($gifDiv);
@@ -51,7 +57,6 @@ $('#view-images').empty();
 }
  
 // allow user to input text and click submit
-
 $("#submit").on("click", function (event) {
   event.preventDefault();
   if($("#input-box").val()===("")){throw error}
@@ -59,6 +64,11 @@ $("#submit").on("click", function (event) {
   var newTopic = $("#input-box").val().trim();
   // user text gets added to the button area 
   topicArray.push(newTopic);
+  if(confirm('Save to Favorites')){
+    favArray.push(newTopic)
+    localStorage.setItem("favorite", favArray)
+    $('#favorites').append(localStorage.getItem("favorite"))
+  }
   renderButtons();
   $('#input-box').val("")}
 });
@@ -69,7 +79,8 @@ function renderButtons() {
   for (var i = 0; i < topicArray.length; i++) {
     var $a = $("<button>");
     $a.addClass("topic ");
-    $a.attr("data-name", topicArray[i]);
+    $a.attr({
+      "data-name": topicArray[i],});
     $a.text(topicArray[i]);
     $("#buttons-view").append($a);
   }
