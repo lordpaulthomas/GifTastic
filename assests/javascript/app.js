@@ -64,11 +64,11 @@ $("#submit").on("click", function (event) {
   var newTopic = $("#input-box").val().trim();
   // user text gets added to the button area 
   topicArray.push(newTopic);
-  if(confirm('Save to Favorites')){
-    favArray.push(newTopic)
-    localStorage.setItem("favorite", favArray)
-    $('#favorites').append(localStorage.getItem("favorite"))
-  }
+  // if(confirm('Save to Favorites')){
+  //   favArray.push(newTopic)
+  //   localStorage.setItem("favorite", favArray)
+  //   $('#favorites').append(localStorage.getItem("favorite"))
+  // }
   renderButtons();
   $('#input-box').val("")}
 });
