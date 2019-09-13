@@ -1,6 +1,6 @@
 // create an array with topic examples
 const topicArray = ["Fish", "Boat", "Cruise"];
-
+const favArray = [];
 
 // turn the array into buttons
 function renderButtons() {
@@ -29,7 +29,7 @@ $(document).on('click', '.topic', function () {
 })
 function searchGiphy(newTopic) {
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    newTopic + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10"
+    newTopic + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=25"
 $('#view-images').empty();
   $.ajax({
     url: queryURL,
@@ -39,9 +39,11 @@ $('#view-images').empty();
     console.log(results)
     for (let i = 0; i < results.length; i++) {
       $gifDiv = $('<div>');
-      
+      $p = $('<p>')
+      $p.text("Rated - "+results[i].rating)
       $img = $('<img>');
       $img.attr("src", results[i].images.fixed_height.url);
+      $gifDiv.append($p)
       $gifDiv.prepend($img);
       $('#view-images').prepend($gifDiv);
     }

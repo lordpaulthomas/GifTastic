@@ -5,10 +5,14 @@ button,
       margin: 1em;
       padding: 3px;
     }
+#favorite{
+  background-color: darkslategray;
+  color: azure;
+}
 
 #header {
   float: left;
-  font-size: 20px;
+  font-size: 18px;
 
   font-family: 'Patua One', cursive;
 
