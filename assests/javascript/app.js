@@ -68,7 +68,7 @@ function renderButtons() {
   $("#buttons-view").empty();
   for (var i = 0; i < topicArray.length; i++) {
     var $a = $("<button>");
-    $a.addClass("topic");
+    $a.addClass("topic ");
     $a.attr("data-name", topicArray[i]);
     $a.text(topicArray[i]);
     $("#buttons-view").append($a);

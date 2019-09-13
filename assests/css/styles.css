@@ -27,6 +27,7 @@ button{
   color: white;
   padding: 2em;
   border: solid 2px black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .container {
@@ -43,4 +44,9 @@ button{
   font-family: 'Patua One', cursive;
   font-size: 3em;
   padding: 0px;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: solid 2px darkseagreen;
 }
